@@ -3,8 +3,8 @@ package com.vamonossoftware.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO add more information
 public class ValidationResult {
-    private List<ValidationResult> results = new ArrayList<>();
     private boolean success;
 
     public ValidationResult(boolean success) {
@@ -18,11 +18,6 @@ public class ValidationResult {
     public static ValidationResult success() {
         return new ValidationResult(true);
     }
-
-    public void add(ValidationResult result) {
-        results.add(result);
-    }
-
 
     public boolean isFailure() {
         return !success;

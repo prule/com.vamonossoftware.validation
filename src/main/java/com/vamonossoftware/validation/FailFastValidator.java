@@ -11,11 +11,16 @@ public class FailFastValidator<T> implements Validator<T> {
         this.validator = validator;
     }
 
-    public ValidationResults validate(T object) {
+    public ValidationResults validate(T object) throws ValidationException {
         final ValidationResults validate = validator.validate(object);
         if (validate.isFailure()) {
-//            throw new ValidationException();
+            throw new ValidationException();
         }
         return validate;
+    }
+
+    @Override
+    public ValidationResults getResults() {
+        return validator.getResults();
     }
 }

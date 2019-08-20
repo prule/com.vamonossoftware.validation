@@ -10,7 +10,7 @@ public class ValidationResults {
     private boolean success = true;
 
     public void add(ValidationResult result) {
-        results.add(result);
+        this.results.add(result);
         if (result.isFailure()) {
             this.success = false;
         }
@@ -18,5 +18,9 @@ public class ValidationResults {
 
     public boolean isFailure() {
         return !success;
+    }
+
+    public int getSize() {
+        return results.size();
     }
 }

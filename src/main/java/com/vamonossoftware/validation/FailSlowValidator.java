@@ -6,6 +6,7 @@ import java.util.List;
 public class FailSlowValidator<T> implements Validator<T>{
 
     private List<Rule> rules;
+    final ValidationResults results = new ValidationResults();
 
     public FailSlowValidator(List<Rule> rules) {
         this.rules = rules;
@@ -16,12 +17,18 @@ public class FailSlowValidator<T> implements Validator<T>{
     }
 
     public ValidationResults validate(T object) {
-        final ValidationResults result = new ValidationResults();
 
         for (Rule rule : rules) {
-            result.add(rule.validate(object));
+            final ValidationResult result = rule.validate(object);
+            if (result.isFailure()) {
+                this.results.add(result);
+            }
         }
 
-        return result;
+        return results;
+    }
+
+    public ValidationResults getResults() {
+        return results;
     }
 }
