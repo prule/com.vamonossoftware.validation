@@ -1,0 +1,22 @@
+package com.vamonossoftware.validation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ValidationResults {
+
+    private final List<ValidationResult> results = new ArrayList<>();
+
+    private boolean success = true;
+
+    public void add(ValidationResult result) {
+        results.add(result);
+        if (result.isFailure()) {
+            this.success = false;
+        }
+    }
+
+    public boolean isFailure() {
+        return !success;
+    }
+}
